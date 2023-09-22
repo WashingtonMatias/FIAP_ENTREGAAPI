@@ -10,7 +10,6 @@ namespace Fiap.Data.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly I
         public void AdicionarUsuario(Usuario usuario)
         {
             throw new NotImplementedException();
