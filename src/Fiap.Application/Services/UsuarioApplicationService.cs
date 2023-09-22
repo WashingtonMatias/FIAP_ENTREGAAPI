@@ -51,7 +51,7 @@ namespace Fiap.Application.Services
 
         public IEnumerable<UsuarioViewModel> ObterUsuarios()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<UsuarioViewModel>)_usuarioService.ObterUsuarios();
         }
     }
 }

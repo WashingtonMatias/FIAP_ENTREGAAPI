@@ -19,12 +19,12 @@ namespace Fiap.Domain.Models
             Email = email;
         }
 
-        public Guid Id { get; private set; }
-        public DateTime DataCadastro { get; private set; }
-        public string Nome { get; private set; }
-        public string SobreNome { get; private set; }
-        public DateTime DataNascimento { get; private set; }
-        public string Cpf { get; private set; }
-        public string Email { get; private set; }
+        public Guid Id { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public string Nome { get; set; }
+        public string SobreNome { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public string Cpf { get; set; }
+        public string Email { get; set; }
     }
 }
