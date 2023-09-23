@@ -14,6 +14,18 @@ namespace Fiap.Data.Context
         {
         }
 
-        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Cadastro> Cadastro { get; set; }
+
+        public DbSet<Tbl_Estabelecimento> Tbl_Estabelecimento { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tbl_Estabelecimento>()
+                .HasKey(e => e.ID_ESTABELECIMENTO); // Define a chave primária
+            modelBuilder.Entity<Cadastro>()
+                .HasKey(e => e.Id_Cadastro); // Define a chave primária
+
+            // Configurações adicionais do modelo, se necessário
+        }
     }
 }
