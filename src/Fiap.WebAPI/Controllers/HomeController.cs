@@ -1,7 +1,5 @@
 ﻿using Fiap.Application.Interfaces;
 using Fiap.Application.ViewModels;
-using Fiap.Data.Context;
-using Fiap.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.WebAPI.Controllers
@@ -14,24 +12,49 @@ namespace Fiap.WebAPI.Controllers
         public HomeController(ICadastroApplicaionService usuarioApplicationService)
         {
             _usuarioApplicationService = usuarioApplicationService;
-        }        
+        }
 
-        [HttpPost("AdicionarUsuario")]
-        public ActionResult AdicionarUsuario(CadastroViewModel usuarioViewModel)
+        [HttpPost("AdicionarCadastro")]
+        public ActionResult AdicionarUsuario(CadastroViewModel cadastrViewModel)
         {
             if (ModelState.IsValid)
-                _usuarioApplicationService.AdicionarUsuario(usuarioViewModel);
+                _usuarioApplicationService.AdicionarCadastro(cadastrViewModel);
 
             return Ok();
         }
 
-        [HttpGet("ListarUsuario")]
-        public ActionResult ListarUsuario()
+        [HttpDelete("DeletarCadastro")]
+        public ActionResult DeletarCadastro(Guid id)
         {
             if (ModelState.IsValid)
-                _usuarioApplicationService.ObterUsuarios();
+                _usuarioApplicationService.DeletarCadastro(id);
 
             return Ok();
+        }
+
+        [HttpPut("AtualizarCadastro")]
+        public ActionResult AtualizarCadastro(CadastroViewModel cadastrViewModel)
+        {
+            if (ModelState.IsValid)
+                _usuarioApplicationService.AtualizarCadastro(cadastrViewModel);
+
+            return Ok();
+        }
+
+        [HttpGet("ObterCadastro")]
+        public ActionResult ObterCadastro(Guid id)
+        {
+            var cadastro = _usuarioApplicationService.ObterCadastro(id);
+
+            return Ok(cadastro);
+        }
+
+        [HttpGet("ListarCadastro")]
+        public ActionResult ListarCadastro()
+        {
+            var cadastros = _usuarioApplicationService.ObterCadastros();
+
+            return Ok(cadastros);
         }
 
         [HttpGet("ListarEstabeleciemtno")]

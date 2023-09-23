@@ -10,41 +10,41 @@ namespace Fiap.Domain.Services
 {
     public class CadastroService : ICadastroService
     {
-        private readonly ICadastroRepository _UsuarioRepository;
+        private readonly ICadastroRepository _cadastroRepository;
 
-        public CadastroService(ICadastroRepository UsuarioRepository)
+        public CadastroService(ICadastroRepository cadastroRepository)
         {
-            _UsuarioRepository = UsuarioRepository;
+            _cadastroRepository = cadastroRepository;
         }
 
-        public void AdicionarUsuario(Cadastro Usuario)
+        public void AdicionarCadastro(Cadastro cadastro)
         {
-            _UsuarioRepository.AdicionarUsuario(Usuario);
+            _cadastroRepository.AdicionarCadastro(cadastro);
         }
 
-        public void AtualizarUsuario(Cadastro Usuario)
+        public void AtualizarCadastro(Cadastro cadastro)
         {
-            _UsuarioRepository.AtualizarUsuario(Usuario);
+            _cadastroRepository.AtualizarCadastro(cadastro);
         }
 
-        public void DeletarUsuario(int id)
+        public void DeletarCadastro(Guid id)
         {
-            _UsuarioRepository.DeletarUsuario(id);
+            _cadastroRepository.DeletarCadastro(id);
         }
 
         public IEnumerable<Tbl_Estabelecimento> ObterEstabelecimento()
         {
-            return _UsuarioRepository.ObterEstabelecimento();
+            return _cadastroRepository.ObterEstabelecimento();
         }
 
-        public Cadastro ObterUsuario(int id)
+        public Cadastro ObterCadastro(Guid id)
         {
-           return _UsuarioRepository.ObterUsuario(id);
+           return _cadastroRepository.ObterCadastro(id);
         }
 
-        public IEnumerable<Cadastro> ObterUsuarios()
+        public IEnumerable<Cadastro> ObterCadastros()
         {
-            return _UsuarioRepository.ObterUsuarios();
+            return _cadastroRepository.ObterCadastros();
         }
     }
 }

@@ -18,23 +18,23 @@ namespace Fiap.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public void AdicionarUsuario(Cadastro Usuario)
+        public void AdicionarCadastro(Cadastro cadastro)
         {
-            _dbContext.Cadastro.Add(Usuario);
+            _dbContext.Cadastro.Add(cadastro);
             _dbContext.SaveChanges();
         }
 
-        public void AtualizarUsuario(Cadastro Usuario)
+        public void AtualizarCadastro(Cadastro cadastro)
         {
-            _dbContext.Cadastro.Update(Usuario);
+            _dbContext.Cadastro.Update(cadastro);
             _dbContext.SaveChanges();
         }
 
-        public void DeletarUsuario(int id)
+        public void DeletarCadastro(Guid id)
         {
-            var Usuario = _dbContext.Cadastro.FirstOrDefault(u => u.Id_Cadastro == id);
-            if (Usuario != null)
-            _dbContext.Cadastro.Remove(Usuario);
+            var cadastro = _dbContext.Cadastro.FirstOrDefault(u => u.Id_Cadastro == id);
+            if (cadastro != null)
+            _dbContext.Cadastro.Remove(cadastro);
            
             _dbContext.SaveChanges();
         }
@@ -44,12 +44,12 @@ namespace Fiap.Data.Repositories
             return _dbContext.Tbl_Estabelecimento.ToList();
         }
 
-        public Cadastro ObterUsuario(int id)
+        public Cadastro ObterCadastro(Guid id)
         {
             return _dbContext.Cadastro.FirstOrDefault(u => u.Id_Cadastro == id);
         }
 
-        public IEnumerable<Cadastro> ObterUsuarios()
+        public IEnumerable<Cadastro> ObterCadastros()
         {
             return _dbContext.Cadastro.ToList();
         }

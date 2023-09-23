@@ -11,7 +11,7 @@ namespace Fiap.Domain.Models
     [Table("CADASTRO")]
     public class Cadastro
     {
-        public Cadastro(int id_Cadastro, TimeSpan dataCadastro, string nome, string sobreNome, TimeSpan dataNascimento, string cpf, string email)
+        public Cadastro(Guid id_Cadastro, DateTime dataCadastro, string nome, string sobreNome, DateTime dataNascimento, string cpf, string email)
         {
             Id_Cadastro = id_Cadastro;
             DataCadastro = dataCadastro;
@@ -24,11 +24,11 @@ namespace Fiap.Domain.Models
 
         [Column("ID_CADASTRO")]
         [Display(Name = "Id_Cadastro")]
-        public int Id_Cadastro { get; set; }
+        public Guid Id_Cadastro { get; set; }
 
         [Column("DATACADASTRO")]
         [Display(Name = "DataCadastro")]
-        public TimeSpan DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; }
 
         [Column("NOME")]
         [Display(Name = "Nome")]
@@ -40,7 +40,7 @@ namespace Fiap.Domain.Models
 
         [Column("DATANASCIMENTO")]
         [Display(Name = "DataNascimento")]
-        public TimeSpan DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
 
         [Column("CPF")]
         [Display(Name = "Cpf")]

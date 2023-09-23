@@ -9,11 +9,11 @@ namespace Fiap.Domain.Interfaces
 {
     public interface ICadastroRepository
     {
-        void AdicionarUsuario(Cadastro Usuario);
-        void AtualizarUsuario(Cadastro Usuario);
-        void DeletarUsuario(int id);
-        Cadastro ObterUsuario(int id);
-        IEnumerable<Cadastro> ObterUsuarios();
+        void AdicionarCadastro(Cadastro cadastro);
+        void AtualizarCadastro(Cadastro cadastro);
+        void DeletarCadastro(Guid id);
+        Cadastro ObterCadastro(Guid id);
+        IEnumerable<Cadastro> ObterCadastros();
         IEnumerable<Tbl_Estabelecimento> ObterEstabelecimento();
     }
 }

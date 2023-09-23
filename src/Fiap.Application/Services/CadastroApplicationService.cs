@@ -9,71 +9,76 @@ namespace Fiap.Application.Services
 {
     public class CadastroApplicationService : ICadastroApplicaionService
     {
-        private readonly ICadastroService _UsuarioService;
+        private readonly ICadastroService _cadastroService;
 
-        public CadastroApplicationService(ICadastroService UsuarioService)
+        public CadastroApplicationService(ICadastroService CadastrosService)
         {
-            _UsuarioService = UsuarioService;
+            _cadastroService = CadastrosService;
         }
 
-        public void AdicionarUsuario(CadastroViewModel UsuarioViewModel)
+        public void AdicionarCadastro(CadastroViewModel CadastrosViewModel)
         {
-            Cadastro Usuario = MontarObjetoUsuario(UsuarioViewModel);
+            Cadastro Cadastros = MontarObjetoCadastros(CadastrosViewModel);
 
-            _UsuarioService.AdicionarUsuario(Usuario);
+            _cadastroService.AdicionarCadastro(Cadastros);
         }
 
-        private static Cadastro MontarObjetoUsuario(CadastroViewModel UsuarioViewModel)
+        private static Cadastro MontarObjetoCadastros(CadastroViewModel CadastrosViewModel)
         {
-            return new Cadastro(UsuarioViewModel.Id_Cadastro,
-                                                  UsuarioViewModel.DataCadastro,
-                                                  UsuarioViewModel.Nome,
-                                                  UsuarioViewModel.SobreNome,
-                                                  UsuarioViewModel.DataNascimento,
-                                                  UsuarioViewModel.Cpf,
-                                                  UsuarioViewModel.Email);
+            return new Cadastro(CadastrosViewModel.Id_Cadastro,
+                                                  CadastrosViewModel.DataCadastro,
+                                                  CadastrosViewModel.Nome,
+                                                  CadastrosViewModel.SobreNome,
+                                                  CadastrosViewModel.DataNascimento,
+                                                  CadastrosViewModel.Cpf,
+                                                  CadastrosViewModel.Email);
         }
 
-        public void AtualizarUsuario(CadastroViewModel UsuarioViewModel)
+        public void AtualizarCadastro(CadastroViewModel CadastrosViewModel)
         {
-            Cadastro Usuario = MontarObjetoUsuario(UsuarioViewModel);
+            Cadastro Cadastros = MontarObjetoCadastros(CadastrosViewModel);
 
-            _UsuarioService.AtualizarUsuario(Usuario);
+            _cadastroService.AtualizarCadastro(Cadastros);
         }
 
-        public void DeletarUsuario(Guid id)
+        public void DeletarCadastro(Guid id)
         {
-            throw new NotImplementedException();
+            _cadastroService.DeletarCadastro(id);
         }
 
-        public CadastroViewModel ObterUsuario(Guid id)
+        public CadastroViewModel ObterCadastro(Guid id)
         {
-            throw new NotImplementedException();
+            return mapperCadastro(_cadastroService.ObterCadastro(id));
         }
 
-        public IEnumerable<CadastroViewModel> ObterUsuarios()
+        public IEnumerable<CadastroViewModel> ObterCadastros()
         {
-            var cadastros = _UsuarioService.ObterUsuarios();
+            var cadastros = _cadastroService.ObterCadastros();
             var cadastroViewModel = new List<CadastroViewModel>();
             foreach (var cadastro in cadastros)
             {
-                cadastroViewModel.Add(new CadastroViewModel
-                {
-                    Id_Cadastro = cadastro.Id_Cadastro,
-                    Nome = cadastro.Nome,
-                    Cpf = cadastro.Cpf,
-                    SobreNome = cadastro.SobreNome,
-                    DataCadastro = cadastro.DataCadastro,
-                    DataNascimento = cadastro.DataNascimento,
-                    Email = cadastro.Email
-                });
+                cadastroViewModel.Add(mapperCadastro(cadastro));
             }
             return cadastroViewModel;
         }
 
+        private static CadastroViewModel mapperCadastro(Cadastro cadastro)
+        {
+            return new CadastroViewModel
+            {
+                Id_Cadastro = cadastro.Id_Cadastro,
+                Nome = cadastro.Nome,
+                Cpf = cadastro.Cpf,
+                SobreNome = cadastro.SobreNome,
+                DataCadastro = cadastro.DataCadastro,
+                DataNascimento = cadastro.DataNascimento,
+                Email = cadastro.Email
+            };
+        }
+
         public IEnumerable<Tbl_EstabelecimentoViewModel> ObterEstabeleciemento()
         {
-            var estabelecimentos = _UsuarioService.ObterEstabelecimento();
+            var estabelecimentos = _cadastroService.ObterEstabelecimento();
             var estabelecimentoViewModel = new List<Tbl_EstabelecimentoViewModel>();
             foreach (var estabelecimento in estabelecimentos)
             {
