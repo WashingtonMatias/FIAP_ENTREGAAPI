@@ -16,11 +16,11 @@ namespace Fiap.Application.Services
             _cadastroService = CadastrosService;
         }
 
-        public void AdicionarCadastro(CadastroViewModel CadastrosViewModel)
+        public CadastroViewModel AdicionarCadastro(CadastroViewModel CadastrosViewModel)
         {
             Cadastro Cadastros = MontarObjetoCadastros(CadastrosViewModel);
 
-            _cadastroService.AdicionarCadastro(Cadastros);
+            return MontarObjetoCadastroViewModel(_cadastroService.AdicionarCadastro(Cadastros));
         }
 
         private static Cadastro MontarObjetoCadastros(CadastroViewModel CadastrosViewModel)
@@ -34,11 +34,22 @@ namespace Fiap.Application.Services
                                                   CadastrosViewModel.Email);
         }
 
-        public void AtualizarCadastro(CadastroViewModel CadastrosViewModel)
+        private static CadastroViewModel MontarObjetoCadastroViewModel(Cadastro Cadastro)
+        {
+            return new CadastroViewModel(Cadastro.Id_Cadastro,
+                                                  Cadastro.DataCadastro,
+                                                  Cadastro.Nome,
+                                                  Cadastro.SobreNome,
+                                                  Cadastro.DataNascimento,
+                                                  Cadastro.Cpf,
+                                                  Cadastro.Email);
+        }
+
+        public CadastroViewModel AtualizarCadastro(CadastroViewModel CadastrosViewModel)
         {
             Cadastro Cadastros = MontarObjetoCadastros(CadastrosViewModel);
 
-            _cadastroService.AtualizarCadastro(Cadastros);
+            return MontarObjetoCadastroViewModel(_cadastroService.AtualizarCadastro(Cadastros));
         }
 
         public void DeletarCadastro(Guid id)
@@ -65,15 +76,15 @@ namespace Fiap.Application.Services
         private static CadastroViewModel mapperCadastro(Cadastro cadastro)
         {
             return new CadastroViewModel
-            {
-                Id_Cadastro = cadastro.Id_Cadastro,
-                Nome = cadastro.Nome,
-                Cpf = cadastro.Cpf,
-                SobreNome = cadastro.SobreNome,
-                DataCadastro = cadastro.DataCadastro,
-                DataNascimento = cadastro.DataNascimento,
-                Email = cadastro.Email
-            };
+            (
+                cadastro.Id_Cadastro,
+                cadastro.DataCadastro,
+                cadastro.Nome,
+                cadastro.SobreNome,
+                cadastro.DataNascimento,
+                cadastro.Cpf,
+                cadastro.Email
+            );
         }
 
         public IEnumerable<Tbl_EstabelecimentoViewModel> ObterEstabeleciemento()

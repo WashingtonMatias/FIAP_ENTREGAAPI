@@ -17,14 +17,14 @@ namespace Fiap.Domain.Services
             _cadastroRepository = cadastroRepository;
         }
 
-        public void AdicionarCadastro(Cadastro cadastro)
+        public Cadastro AdicionarCadastro(Cadastro cadastro)
         {
-            _cadastroRepository.AdicionarCadastro(cadastro);
+            return _cadastroRepository.AdicionarCadastro(cadastro);
         }
 
-        public void AtualizarCadastro(Cadastro cadastro)
+        public Cadastro AtualizarCadastro(Cadastro cadastro)
         {
-            _cadastroRepository.AtualizarCadastro(cadastro);
+            return _cadastroRepository.AtualizarCadastro(cadastro);
         }
 
         public void DeletarCadastro(Guid id)

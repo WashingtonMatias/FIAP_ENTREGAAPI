@@ -9,8 +9,8 @@ namespace Fiap.Domain.Interfaces
 {
     public interface ICadastroRepository
     {
-        void AdicionarCadastro(Cadastro cadastro);
-        void AtualizarCadastro(Cadastro cadastro);
+        Cadastro AdicionarCadastro(Cadastro cadastro);
+        Cadastro AtualizarCadastro(Cadastro cadastro);
         void DeletarCadastro(Guid id);
         Cadastro ObterCadastro(Guid id);
         IEnumerable<Cadastro> ObterCadastros();

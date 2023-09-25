@@ -8,6 +8,17 @@ namespace Fiap.Application.ViewModels
 {
     public class CadastroViewModel
     {
+        public CadastroViewModel(Guid id_Cadastro, DateTime dataCadastro, string nome, string sobreNome, DateTime dataNascimento, string cpf, string email)
+        {
+            Id_Cadastro = id_Cadastro;
+            DataCadastro = dataCadastro;
+            Nome = nome;
+            SobreNome = sobreNome;
+            DataNascimento = dataNascimento;
+            Cpf = cpf;
+            Email = email;
+        }
+
         public Guid Id_Cadastro { get; set; }
         public DateTime DataCadastro { get; set; }
         public string Nome { get; set; }

@@ -18,16 +18,22 @@ namespace Fiap.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public void AdicionarCadastro(Cadastro cadastro)
+        public Cadastro AdicionarCadastro(Cadastro cadastro)
         {
+            var validar = _dbContext.Cadastro.FirstOrDefault(x => x.Id_Cadastro == cadastro.Id_Cadastro);
+            
+            if (validar != null) { cadastro.Id_Cadastro = new Guid(); };
+            
             _dbContext.Cadastro.Add(cadastro);
             _dbContext.SaveChanges();
+            return cadastro;
         }
 
-        public void AtualizarCadastro(Cadastro cadastro)
+        public Cadastro AtualizarCadastro(Cadastro cadastro)
         {
             _dbContext.Cadastro.Update(cadastro);
             _dbContext.SaveChanges();
+            return cadastro;
         }
 
         public void DeletarCadastro(Guid id)

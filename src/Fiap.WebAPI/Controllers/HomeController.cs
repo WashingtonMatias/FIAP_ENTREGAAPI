@@ -1,5 +1,6 @@
 ﻿using Fiap.Application.Interfaces;
 using Fiap.Application.ViewModels;
+using Fiap.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.WebAPI.Controllers
@@ -18,9 +19,9 @@ namespace Fiap.WebAPI.Controllers
         public ActionResult AdicionarUsuario(CadastroViewModel cadastrViewModel)
         {
             if (ModelState.IsValid)
-                _usuarioApplicationService.AdicionarCadastro(cadastrViewModel);
+                return Ok(_usuarioApplicationService.AdicionarCadastro(cadastrViewModel));
 
-            return Ok();
+            return NotFound("Erro ao cadastrar");
         }
 
         [HttpDelete("DeletarCadastro")]
@@ -29,16 +30,16 @@ namespace Fiap.WebAPI.Controllers
             if (ModelState.IsValid)
                 _usuarioApplicationService.DeletarCadastro(id);
 
-            return Ok();
+            return Ok("Cadastro excluido com sucesso!");
         }
 
         [HttpPut("AtualizarCadastro")]
         public ActionResult AtualizarCadastro(CadastroViewModel cadastrViewModel)
         {
             if (ModelState.IsValid)
-                _usuarioApplicationService.AtualizarCadastro(cadastrViewModel);
-
-            return Ok();
+                return Ok(_usuarioApplicationService.AtualizarCadastro(cadastrViewModel));
+            
+            return NotFound("Erro ao cadastrar");
         }
 
         [HttpGet("ObterCadastro")]
