@@ -7,7 +7,7 @@ namespace Fiap.Application.Interfaces
     {
         CadastroViewModel AdicionarCadastro(CadastroViewModel cadastroViewModel);
         CadastroViewModel AtualizarCadastro(CadastroViewModel cadastroViewModel);
-        void DeletarCadastro(Guid id);
+        string DeletarCadastro(Guid id);
         CadastroViewModel ObterCadastro(Guid id);
         IEnumerable<CadastroViewModel> ObterCadastros();
 

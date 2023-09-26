@@ -52,9 +52,9 @@ namespace Fiap.Application.Services
             return MontarObjetoCadastroViewModel(_cadastroService.AtualizarCadastro(Cadastros));
         }
 
-        public void DeletarCadastro(Guid id)
+        public string DeletarCadastro(Guid id)
         {
-            _cadastroService.DeletarCadastro(id);
+            return _cadastroService.DeletarCadastro(id);
         }
 
         public CadastroViewModel ObterCadastro(Guid id)

@@ -27,9 +27,9 @@ namespace Fiap.Domain.Services
             return _cadastroRepository.AtualizarCadastro(cadastro);
         }
 
-        public void DeletarCadastro(Guid id)
+        public string DeletarCadastro(Guid id)
         {
-            _cadastroRepository.DeletarCadastro(id);
+            return _cadastroRepository.DeletarCadastro(id);
         }
 
         public IEnumerable<Tbl_Estabelecimento> ObterEstabelecimento()

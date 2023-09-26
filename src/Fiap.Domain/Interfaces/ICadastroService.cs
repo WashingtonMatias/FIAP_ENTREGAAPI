@@ -11,7 +11,7 @@ namespace Fiap.Domain.Interfaces
     {
         Cadastro AdicionarCadastro(Cadastro cadastro);
         Cadastro AtualizarCadastro(Cadastro cadastro);
-        void DeletarCadastro(Guid id);
+        string DeletarCadastro(Guid id);
         Cadastro ObterCadastro(Guid id);
         IEnumerable<Cadastro> ObterCadastros();
         IEnumerable<Tbl_Estabelecimento> ObterEstabelecimento();

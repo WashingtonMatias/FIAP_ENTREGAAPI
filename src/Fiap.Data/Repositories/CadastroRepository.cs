@@ -21,9 +21,9 @@ namespace Fiap.Data.Repositories
         public Cadastro AdicionarCadastro(Cadastro cadastro)
         {
             var validar = _dbContext.Cadastro.FirstOrDefault(x => x.Id_Cadastro == cadastro.Id_Cadastro);
-            
+
             if (validar != null) { cadastro.Id_Cadastro = new Guid(); };
-            
+
             _dbContext.Cadastro.Add(cadastro);
             _dbContext.SaveChanges();
             return cadastro;
@@ -36,13 +36,17 @@ namespace Fiap.Data.Repositories
             return cadastro;
         }
 
-        public void DeletarCadastro(Guid id)
+        public string DeletarCadastro(Guid id)
         {
             var cadastro = _dbContext.Cadastro.FirstOrDefault(u => u.Id_Cadastro == id);
             if (cadastro != null)
-            _dbContext.Cadastro.Remove(cadastro);
-           
-            _dbContext.SaveChanges();
+            {
+                _dbContext.Cadastro.Remove(cadastro);
+                _dbContext.SaveChanges();
+                return "Cadastro excluido com sucesso!";
+            }
+
+            return "Id não localizado!";
         }
 
         public IEnumerable<Tbl_Estabelecimento> ObterEstabelecimento()

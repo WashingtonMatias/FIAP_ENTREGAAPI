@@ -27,10 +27,13 @@ namespace Fiap.WebAPI.Controllers
         [HttpDelete("DeletarCadastro")]
         public ActionResult DeletarCadastro(Guid id)
         {
+            string retorno;
             if (ModelState.IsValid)
-                _usuarioApplicationService.DeletarCadastro(id);
+                retorno = _usuarioApplicationService.DeletarCadastro(id);
+            else
+                retorno = "Erro ao efetuar a exclusão!";
 
-            return Ok("Cadastro excluido com sucesso!");
+            return Ok(retorno);
         }
 
         [HttpPut("AtualizarCadastro")]
