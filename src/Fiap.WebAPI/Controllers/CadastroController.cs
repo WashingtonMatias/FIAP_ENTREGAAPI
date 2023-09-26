@@ -7,10 +7,10 @@ namespace Fiap.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController : Controller
+    public class CadastroController : Controller
     {
         private readonly ICadastroApplicaionService _usuarioApplicationService;
-        public HomeController(ICadastroApplicaionService usuarioApplicationService)
+        public CadastroController(ICadastroApplicaionService usuarioApplicationService)
         {
             _usuarioApplicationService = usuarioApplicationService;
         }
